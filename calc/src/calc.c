@@ -2,9 +2,9 @@
  ============================================================================
  Name        : calc.c
  Author      : Nikita Agapov
- Version     :
+ Version     : 1.01
  Copyright   : (͡° ͜ʖ ͡°)
- Description : calculator
+ Description : Calculator. Enable operations +, -, *, /, !, ^
  ============================================================================
  */
 
@@ -36,12 +36,13 @@ int main(void) {
 	        /*printf("I can't calculate factorial for negative number. ");
 	          printf("\n");
 	          err = 1;*/
-	        //and comment this
+	        //and comment from this
 	        x = -x;
 	        for (int i = 1; i<x+1; i++){
 	            result *= i;
 	        }
 	        result = -result;
+	        // to this
 	    }
 	    } else {
 	        printf("I can't calculate factorial for not integer number. \n");
@@ -87,7 +88,7 @@ int main(void) {
 	        err = 1;
 	    }
 	}
-	if(err != 1){
+	if(err != 1){                                //if the error in the expression does not straighten out the answer
 	if ( (float)((int) result ) == result){      //discarding zeros after the decimal point if the number is an integer.
 	    int intResult = result;
 	    printf(" =");
