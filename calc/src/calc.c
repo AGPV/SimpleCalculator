@@ -14,6 +14,7 @@
 int main(void) {
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
+    int err=0;                              //flag for wrong operations
 	float x = 0, y = 0, result = 0;
 	char ch, res='R';                       //ch - symbol of operation
 	while (res == 'R'){                     //for repeat(res as flag)
@@ -34,7 +35,7 @@ int main(void) {
 	        //if you don't need calculate factorial for negative number uncomment next code
 	        /*printf("I can't calculate factorial for negative number. ");
 	          printf("\n");
-	          goto restart;*/
+	          err = 1;*/
 	        //and comment this
 	        x = -x;
 	        for (int i = 1; i<x+1; i++){
@@ -44,7 +45,7 @@ int main(void) {
 	    }
 	    } else {
 	        printf("I can't calculate factorial for not integer number. \n");
-	        goto restart;
+	        err = 1;
 	    }
 	} else {
 	    printf("Enter second number ");
@@ -61,12 +62,12 @@ int main(void) {
 	        result = x / y;
 	        } else {
 	            printf("I can't divide by zero!\n");
-	            goto restart;
+	            err = 1;
 	        }
 	    } else if (ch == '^'){
 	        if ((x==0)&&(y==0)){                            //defense from 0^0
 	            printf("Indeterminate form 0^0\n");
-	            goto restart;
+	            err = 1;
 	        } else {
 	        result = x;
 	        if (y>0){
@@ -83,9 +84,10 @@ int main(void) {
 	        }
 	    } else {
 	        printf ("Wrong operation! \n");
-	        goto restart;
+	        err = 1;
 	    }
 	}
+	if(err != 1){
 	if ( (float)((int) result ) == result){      //discarding zeros after the decimal point if the number is an integer.
 	    int intResult = result;
 	    printf(" =");
@@ -96,7 +98,9 @@ int main(void) {
 	    printf(" %f", result);
 	    printf("\n");
 	}
-	restart:
+	} else {
+	    err = 0;
+	}
 	printf("For restart enter R, for exit enter something different: ");
 	scanf(" %c", &res);
 	printf("\n");
