@@ -31,18 +31,19 @@ int main(void) {
 	            result *= i;
 	        }
 	    } else if (x<0) {                   //workaround for x<0
-	        /*printf("I can't calculate factorial for not negative number. ");
+	        //if you don't need calculate factorial for negative number uncomment next code
+	        /*printf("I can't calculate factorial for negative number. ");
 	          printf("\n");
 	          goto restart;*/
-	        x *= -1;
+	        //and comment this
+	        x = -x;
 	        for (int i = 1; i<x+1; i++){
 	            result *= i;
 	        }
 	        result = -result;
 	    }
 	    } else {
-	        printf("I can't calculate factorial for not integer number. ");
-	        printf("\n");
+	        printf("I can't calculate factorial for not integer number. \n");
 	        goto restart;
 	    }
 	} else {
@@ -59,13 +60,12 @@ int main(void) {
 	        if (y!=0){
 	        result = x / y;
 	        } else {
-	            printf("I can't divide by zero! ");
+	            printf("I can't divide by zero!\n");
 	            goto restart;
 	        }
 	    } else if (ch == '^'){
 	        if ((x==0)&&(y==0)){                            //defense from 0^0
-	            printf("Indeterminate form 0^0");
-	            printf("\n");
+	            printf("Indeterminate form 0^0\n");
 	            goto restart;
 	        } else {
 	        result = x;
@@ -82,7 +82,7 @@ int main(void) {
 	        } else result=1;
 	        }
 	    } else {
-	        printf ("Wrong operation! \n \n");
+	        printf ("Wrong operation! \n");
 	        goto restart;
 	    }
 	}
