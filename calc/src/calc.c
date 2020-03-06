@@ -16,8 +16,14 @@ int main(void) {
     setvbuf(stderr, NULL, _IONBF, 0);
     int err=0;                              //flag for wrong operations
 	float x = 0, y = 0, result = 0;
-	char ch, res='R';                       //ch - symbol of operation
+	float *v1, *v2;                         // vectors
+	float *vres;                            // vector result
+	char ch, res='R', vec;                  //ch - symbol of operation; vec - vector or number operation
 	while (res == 'R'){                     //for repeat(res as flag)
+	printf("if vector operation enter 'v', if number operation enter 'n' ");
+	scanf(" %c", &vec);
+	printf("\n");
+	if (vec=='n'){
 	printf("Enter first number ");
 	scanf(" %f", &x);
 	printf("\n");
@@ -105,6 +111,16 @@ int main(void) {
 	printf("For restart enter R, for exit enter something different: ");
 	scanf(" %c", &res);
 	printf("\n");
+	} else if (vec=='v'){
+	    printf("vector stuff\n");
+
+
+
+
+	    printf("For restart enter R, for exit enter something different: ");
+	    scanf(" %c", &res);
+	    printf("\n");
+	}
 	}
 	return EXIT_SUCCESS;
 }
