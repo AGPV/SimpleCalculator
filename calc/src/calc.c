@@ -14,7 +14,7 @@
 int main(void) {
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
-    int err=0;                              //flag for wrong operations
+    int err=0, v1len, v2len;                              //flag for wrong operations
 	float x = 0, y = 0, result = 0;
 	float *v1, *v2;                         // vectors
 	float *vres;                            // vector result
@@ -112,10 +112,11 @@ int main(void) {
 	scanf(" %c", &res);
 	printf("\n");
 	} else if (vec=='v'){
-	    printf("vector stuff\n");
-
-
-
+	    //printf("vector stuff\n");
+	    printf("Enter length for first vector: ");
+	    scanf(" %a", v1len);
+	    v1 = malloc(v1len);
+	    printf("\n");
 
 	    printf("For restart enter R, for exit enter something different: ");
 	    scanf(" %c", &res);
