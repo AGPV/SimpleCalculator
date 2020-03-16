@@ -14,10 +14,18 @@
 int main(void) {
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
-    int err=0;                              //flag for wrong operations
+    int err = 0;                            //flag for wrong operations
+    int vlen = 0;                           //vectors length
+    int vresint = 0;                        //int vector result
 	float x = 0, y = 0, result = 0;
-	char ch, res='R';                       //ch - symbol of operation
+	float *v1, *v2;                         // vectors
+	float *vres;                            // vector result
+	char ch, res='R', vec;                  //ch - symbol of operation; vec - vector or number operation
 	while (res == 'R'){                     //for repeat(res as flag)
+	printf("if vector operation enter 'v', if number operation enter 'n' ");
+	scanf(" %c", &vec);
+	printf("\n");
+	if (vec=='n'){
 	printf("Enter first number ");
 	scanf(" %f", &x);
 	printf("\n");
@@ -105,6 +113,64 @@ int main(void) {
 	printf("For restart enter R, for exit enter something different: ");
 	scanf(" %c", &res);
 	printf("\n");
+	} else if (vec=='v'){
+	    printf("Enter length for vectors: ");
+	    scanf(" %i", &vlen);
+	    printf("\n");
+        v1 = malloc(vlen*sizeof(int));
+        v2 = malloc(vlen*sizeof(int));
+        printf("Enter first vector: ");
+        for (int i = 0; i<vlen; i++){
+            scanf(" %f", &v1[i]);
+        }
+        printf("Enter operation(+,-,s)[s = scaling]");
+        scanf(" %c", &ch);
+        if (ch != 's'){                                 ////to not ask for a second vector for scaling
+            printf("Enter second vector: ");
+            for (int i = 0; i<vlen; i++){
+                scanf(" %f", &v2[i]);
+            }
+            if (ch == '+'){
+                printf("Sum: ");
+                for (int i = 0; i<vlen; i++){
+                    if ( (float)((int) v1[i] + v2[i] ) == v1[i] + v2[i]){
+                        vresint = (int) v1[i] + v2[i];
+                        printf("%i ", vresint);
+                    } else {
+                        printf("%f ", v1[i] + v2[i]);
+                    }
+                }
+            } else if (ch == '-'){
+                printf("Difference: ");
+                for (int i = 0; i<vlen; i++){
+                    if ( (float)((int) v1[i] - v2[i] ) == v1[i] - v2[i]){
+                        vresint = (int) v1[i] - v2[i];
+                        printf("%i ", vresint);
+                    } else {
+                        printf("%f ", v1[i] - v2[i]);
+                    }
+                }
+            }
+        } else if (ch == 's'){
+            printf("Enter scalar: ");
+            scanf(" %f", &x);
+            printf("\n");
+            printf("Scaling result: ");
+            for (int i = 0; i<vlen; i++){
+                if ((float)((int) v1[i] * x) == v1[i] * x){
+                    vresint = (int) v1[i] * x;
+                    printf("%i ", vresint);
+                } else {
+                    printf("%f ", v1[i] * x);
+                }
+            }
+        } else printf("Wrong operation!");
+        free(v1);                           //freeing up memory
+        free(v2);
+	    printf("For restart enter R, for exit enter something different: ");
+	    scanf(" %c", &res);
+	    printf("\n");
+	}
 	}
 	return EXIT_SUCCESS;
 }
