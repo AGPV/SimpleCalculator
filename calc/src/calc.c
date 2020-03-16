@@ -16,6 +16,7 @@ int main(void) {
     setvbuf(stderr, NULL, _IONBF, 0);
     int err = 0;                            //flag for wrong operations
     int vlen = 0;                           //vectors length
+    int vresint = 0;                        //int vector result
 	float x = 0, y = 0, result = 0;
 	float *v1, *v2;                         // vectors
 	float *vres;                            // vector result
@@ -132,12 +133,22 @@ int main(void) {
             if (ch == '+'){
                 printf("Sum: ");
                 for (int i = 0; i<vlen; i++){
-                    printf("%f ", v1[i] + v2[i]);
+                    if ( (float)((int) v1[i] + v2[i] ) == v1[i] + v2[i]){
+                        vresint = (int) v1[i] + v2[i];
+                        printf("%i ", vresint);
+                    } else {
+                        printf("%f ", v1[i] + v2[i]);
+                    }
                 }
             } else if (ch == '-'){
                 printf("Difference: ");
                 for (int i = 0; i<vlen; i++){
-                    printf("%f ", v1[i] - v2[i]);
+                    if ( (float)((int) v1[i] - v2[i] ) == v1[i] - v2[i]){
+                        vresint = (int) v1[i] - v2[i];
+                        printf("%i ", vresint);
+                    } else {
+                        printf("%f ", v1[i] - v2[i]);
+                    }
                 }
             }
         } else if (ch == 's'){
@@ -146,9 +157,16 @@ int main(void) {
             printf("\n");
             printf("Scaling result: ");
             for (int i = 0; i<vlen; i++){
-                printf("%f ", v1[i] * x);
+                if ((float)((int) v1[i] * x) == v1[i] * x){
+                    vresint = (int) v1[i] * x;
+                    printf("%i ", vresint);
+                } else {
+                    printf("%f ", v1[i] * x);
+                }
             }
         } else printf("Wrong operation!");
+        free(v1);                           //freeing up memory
+        free(v2);
 	    printf("For restart enter R, for exit enter something different: ");
 	    scanf(" %c", &res);
 	    printf("\n");
