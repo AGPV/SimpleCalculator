@@ -132,14 +132,12 @@ int main(void) {
             if (ch == '+'){
                 printf("Sum: ");
                 for (int i = 0; i<vlen; i++){
-                    vres[i] = v1[i] + v2[i];
-                    printf(" %f", vres[i]);
+                    printf("%f ", v1[i] + v2[i]);
                 }
             } else if (ch == '-'){
                 printf("Difference: ");
                 for (int i = 0; i<vlen; i++){
-                    vres[i] = v1[i] - v2[i];
-                    printf(" %f", vres[i]);
+                    printf("%f ", v1[i] - v2[i]);
                 }
             }
         } else if (ch == 's'){
@@ -148,8 +146,7 @@ int main(void) {
             printf("\n");
             printf("Scaling result: ");
             for (int i = 0; i<vlen; i++){
-                vres[i] = v1[i] * x;
-                printf(" %f", vres[i]);
+                printf("%f ", v1[i] * x);
             }
         } else printf("Wrong operation!");
 	    printf("For restart enter R, for exit enter something different: ");
