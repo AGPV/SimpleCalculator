@@ -22,6 +22,8 @@ int main(void) {
     char inname[20], outname[20];
     char ch, res='R', vec;                  //ch - symbol of operation; vec - vector or number operation
     while (res == 'R'){                     //for repeat(res as flag)
+    inFile = NULL;
+    while(inFile == NULL){
     printf("Enter the name of the input file(less than 20 characters): ");
     gets(inname);
     inFile = fopen(inname, "r");
@@ -32,6 +34,8 @@ int main(void) {
         gets(outname);
         outFile = fopen(outname, "w");
     }
+    }
+    while(feof(inFile) == 0){               //work for end of file
     fscanf(inFile, " %c", &ch);             //operation
     fscanf(inFile, " %c", &vec);            //vector or number
     if (vec=='s'){
@@ -111,9 +115,11 @@ int main(void) {
     } else {
         err = 0;
     }
-    printf("For restart enter R, for exit enter something different: ");
-    scanf(" %c", &res);
-    printf("\n");
+    if(feof(inFile) != 0){
+        printf("For restart enter R, for exit enter something different: ");
+        scanf(" %c", &res);
+        printf("\n");
+    }
     } else if (vec=='v'){
         fscanf(inFile, "%i", &vlen);
         v1 = malloc(vlen*sizeof(int));
@@ -147,7 +153,7 @@ int main(void) {
                         fprintf(outFile, "%f ", v1[i] + v2[i]);
                     }
                 }
-                fprintf(outFile, ")");
+                fprintf(outFile, ")\n");
             } else if (ch == '-'){
                 for (int i = 0; i<vlen; i++){
                     if ( (float)((int) v1[i] - v2[i] ) == v1[i] - v2[i]){
@@ -156,7 +162,7 @@ int main(void) {
                         fprintf(outFile, "%f ", v1[i] - v2[i]);
                     }
                 }
-                fprintf(outFile, ")");
+                fprintf(outFile, ")\n");
             }
         } else if (ch == 's'){
             fscanf(inFile, " %f", &x);              //scalar
@@ -168,16 +174,19 @@ int main(void) {
                     fprintf(outFile, "%f ", v1[i] * x);
                 }
             }
-            fprintf(outFile, ")");
+            fprintf(outFile, ")\n");
         } else fprintf(outFile, "Wrong operation!");
         free(v1);                           //freeing up memory
         free(v2);
-        printf("For restart enter R, for exit enter something different: ");
-        scanf(" %c", &res);
-        printf("\n");
+        if(feof(inFile) != 0){
+            printf("For restart enter R, for exit enter something different: ");
+            scanf(" %c", &res);
+            printf("\n");
+        }
     }
     }
     fclose(inFile);
     fclose(outFile);
+    }
     return EXIT_SUCCESS;
 }
