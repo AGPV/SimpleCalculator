@@ -25,7 +25,7 @@ int main(void) {
     inFile = NULL;
     while(inFile == NULL){
     printf("Enter the name of the input file(less than 20 characters): ");
-    gets(inname);
+    gets(inname);                           //todo change to scanf
     inFile = fopen(inname, "r");
     if (inFile == NULL){
         printf("This file does not exist.\n");
