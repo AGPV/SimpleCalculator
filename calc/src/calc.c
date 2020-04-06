@@ -25,13 +25,13 @@ int main(void) {
     inFile = NULL;
     while(inFile == NULL){
     printf("Enter the name of the input file(less than 20 characters): ");
-    gets(inname);
+    scanf("%s", inname);
     inFile = fopen(inname, "r");
     if (inFile == NULL){
         printf("This file does not exist.\n");
     } else {
         printf("Enter the name of the output file(less than 20 characters): ");
-        gets(outname);
+        scanf("%s", outname);
         outFile = fopen(outname, "w");
     }
     }
